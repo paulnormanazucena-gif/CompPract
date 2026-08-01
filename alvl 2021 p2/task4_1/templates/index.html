@@ -1,0 +1,35 @@
+<DOCTYPE! html>
+
+<html>
+	<header><h1>task4</h1></header>
+	
+	<body>
+		<form action = {{ url_for('options') }} method = "POST">
+		
+		<table border = '1'>
+			<tr>
+			<td>Round 1 Scores</td>
+			</tr>
+			<tr>
+			<td>Round 2 Scores</td>
+			</tr>
+			<tr>
+			<td>Round 3 Scores</td>
+			</tr>
+			<tr>
+			<td>Mean Scores</td>
+			</tr>
+			<tr>
+			<td>Qualifiers</td>
+			</tr>
+			<tr>
+			<td><p>Options(choose 1 to 5): </p><input name = 'option'></td>
+			</tr>
+			<tr>
+			<td><input type = 'submit'></td>
+			</tr>
+		</table>
+		
+		</form>
+	</body>
+</html>

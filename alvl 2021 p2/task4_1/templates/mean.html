@@ -1,0 +1,28 @@
+<DOCTYPE! html>
+
+<html>
+	<header><h1>task4</h1></header>
+	
+	<body>
+		
+		
+		<table border = '1'>
+			<tr>
+				<td>Name</td>
+				<td>Mean</td>
+			</tr>
+			
+			{% for document in List %}
+			
+			<tr>
+				<td> {{ document[0] }} </td>
+				<td> {{ document[1] }} </td>
+			</tr>
+			
+			{% endfor %}
+			
+		</table>
+		
+		</form>
+	</body>
+</html>
