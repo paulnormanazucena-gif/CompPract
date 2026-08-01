@@ -1,0 +1,24 @@
+<DOCTYPE! html>
+<html>
+	<head> People </head>
+	
+	
+	<body> 
+		<table>
+			<tr>
+				<td> Full Name </td>
+				<td> Screen Name </td>
+				<td> Identity </td>
+			</tr>
+			
+			
+			{% for i in thing %} 
+			<tr>
+				<td> {{ thing[0] }} </td>
+				<td> {{ thing[1] }} </td>
+				<td> {{ thing[2] }} </td>
+			</tr>
+			{% endfor %} 
+		</table>
+	</body>
+</html>
