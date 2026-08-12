@@ -1,0 +1,9 @@
+name,gender
+Paul Norman,M
+Shao Yi,M
+Paul Raymond,M
+Albert Magana,M
+Alvirra Chan,F
+Shermaine Liew,F
+Sia,F
+Koh Hong Kiat,M

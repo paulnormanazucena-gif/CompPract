@@ -1,0 +1,4 @@
+1,Laptops
+2,Tablets
+3,Microcontrollers
+4,Accessories

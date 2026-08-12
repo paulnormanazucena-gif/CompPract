@@ -1,0 +1,131 @@
+Tech Innovator Junior College
+2026 H2 Computing (Syllabus 9569)
+Test 4 Revision: Academic Grading System
+
+1 The TIJC Academic Department wishes to implement a web-based grading portal. This portal will allow administrators to view the entire school's academic performance at a glance and quickly filter for specific grades in specific subjects or by specific students.
+
+There are three tables in the database, and their descriptions are as follows:
+
+student (studentID, name, formClass)
+
+subject (subjCode, subjName)
+
+grade_record (recordID, studentID*, subjCode*, grade)
+
+The primary key is indicated by underlining one or more attributes.
+The attribute indicated with * denotes a foreign key.
+
+It is given that:
+
+The primary key recordID in the table grade_record is an auto-incremented integer.
+
+The grade attribute stores a single character string representing the grade achieved (e.g., 'A', 'B', 'C', 'D', 'E', 'S', 'U').
+
+
+
+
+
+
+
+
+
+
+Task 2.1
+Create an SQL file called TASK2_1_<your_name>.sql to show the SQL code to create the database school_grades.db with the three tables given. Define the primary and foreign keys for each table.
+[3]
+
+
+
+
+
+
+
+
+
+
+
+
+Task 2.2
+The files STUDENT.txt, SUBJECT.txt, and GRADE.txt contain comma-separated information about the students, subjects, and the grades they achieved.
+
+Write a Python program to read the data from these three text files and insert the information into the respective tables in school_grades.db.
+
+Save your program code as:
+Task2_2_<your_name>.py
+[6]
+
+
+
+
+
+
+
+
+
+
+
+
+Task 2.3 (SQL Querying Practice)
+The Head of Department wants to congratulate top performers across all subjects.
+
+Write an SQL query that retrieves the Student Name, Subject Name, and their Grade for every instance where a student scored an 'A'.
+Note: Because the required information is spread across three different tables, you must use the JOIN (or INNER JOIN) clause to link the tables together in your query.
+
+Save this code as:
+Task2_3_<your_name>.sql
+[4]
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task 2.4
+Write a Python program using a web framework (like Flask) to create the grading portal.
+
+When the user navigates to the home page (/), the web application must query the database and render an HTML template that displays all grade records in a table format. The table should show:
+
+Student Name
+
+Form Class
+
+Subject Name
+
+Grade
+
+Save your program code as:
+Task2_4_<your_name>.py and include your HTML file as home.html.
+[6]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task 2.5
+Modify your web application to include a search function at the top of the home page. The web form should capture two inputs from the user:
+
+Target Grade (e.g., A, B, C)
+
+Subject Code (e.g., 9569, 9729)
+
+When the form is submitted, the application should route to a new URL (e.g., /search_results) and render a new HTML template. This new page must display a table showing only the records that perfectly match BOTH the requested Grade and the requested Subject Code. If no records match, display a message saying "No matching records found."
+
+Save your updated Python code as Task2_5_<your_name>.py and your new template as results.html.
+[6]

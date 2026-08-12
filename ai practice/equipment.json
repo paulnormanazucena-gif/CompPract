@@ -1,0 +1,34 @@
+[
+  {
+    "item_id": "AV001",
+    "name": "Wireless Microphone System",
+    "category": "Audio-Visual",
+    "campus": "North",
+    "total_stock": 10,
+    "specs": { "frequency": "UHF", "battery_life_hours": 8 }
+  },
+  {
+    "item_id": "AV002",
+    "name": "Sony 4K Laser Projector",
+    "category": "Audio-Visual",
+    "campus": "South",
+    "total_stock": 3,
+    "specs": { "frequency": "N/A", "battery_life_hours": 0 }
+  },
+  {
+    "item_id": "IT001",
+    "name": "MacBook Pro M3 Max",
+    "category": "IT",
+    "campus": "North",
+    "total_stock": 5,
+    "specs": { "frequency": "Wi-Fi 6E", "battery_life_hours": 18 }
+  },
+  {
+    "item_id": "SP001",
+    "name": "Tournament Volleyball Set",
+    "category": "Sports",
+    "campus": "East",
+    "total_stock": 20,
+    "specs": { "frequency": "N/A", "battery_life_hours": 0 }
+  }
+]

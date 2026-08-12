@@ -1,0 +1,101 @@
+Tech Innovator Junior College
+2026 H2 Computing (Syllabus 9569)
+Test 5 Revision: Exam Performance Tracker
+
+1 The TIJC Exam Committee wants to upgrade their reporting system to easily identify students who need academic intervention. They are building a web-based Exam Performance Tracker.
+
+There are three tables in the database, and their descriptions are as follows:
+
+student (studentID, name, formClass)
+
+subject (subjCode, subjName)
+
+exam_result (resultID, studentID*, subjCode*, grade)
+
+The primary key is indicated by underlining one or more attributes.
+The attribute indicated with * denotes a foreign key.
+
+It is given that:
+
+The primary key resultID in the table exam_result is an auto-incremented integer.
+
+The grade attribute stores a single character string representing the grade achieved ('A', 'B', 'C', 'D', 'E', 'S', 'U').
+
+
+
+
+
+
+
+
+Task 3.1
+Create an SQL file called TASK3_1_<your_name>.sql to show the SQL code to create the database exam_tracker.db with the three tables given. Define the primary and foreign keys for each table.
+[3]
+
+
+
+
+
+
+
+
+Task 3.2
+The files STUDENT.txt, SUBJECT.txt, and RESULT.txt contain comma-separated information.
+
+Write a Python program to read the data from these three text files and insert the information into the respective tables in exam_tracker.db.
+
+Save your program code as:
+Task3_2_<your_name>.py
+[6]
+
+
+
+
+
+
+
+
+
+
+
+
+Task 3.3
+The school needs a report of all failing grades to arrange remedial classes.
+
+Write an SQL query that retrieves the Student Name, Form Class, Subject Name, and their Grade for every instance where a student scored a 'U'.
+
+Save this code as:
+Task3_3_<your_name>.sql
+[4]
+
+
+
+
+
+
+
+
+
+
+Task 3.4
+Write a Python program using a web framework to create the performance tracker portal.
+
+When the user navigates to the home page (/), the web application must query the database and render an HTML template that displays all exam results in a table.
+
+The table must contain the following columns:
+
+Student Name
+
+Subject Name
+
+Grade
+
+Action Required
+
+System Requirement: For the "Action Required" column, the system must dynamically check the student's grade.
+
+If the student scored an 'S' or a 'U', the column must display the text "Schedule Consult" (in bold).
+
+For any other grade (A, B, C, D, or E), the column should simply display "None".
+
+Save your Python code as Task3_4_<your_name>.py and your HTML template as dashboard.html.

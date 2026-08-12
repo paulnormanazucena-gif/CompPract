@@ -1,0 +1,204 @@
+H2 Computing (9569/02) Preliminary Examination: Practical Task (Advanced)
+Task Title: Enterprise Asset & Inter-Departmental Booking Platform (EquipHub Pro)
+
+Total Marks: 30 marks
+
+Suggested Time: 1 hour 15 minutes
+
+Background Context
+The basic EquipHub system has been upgraded to EquipHub Pro to support inter-departmental equipment cross-borrowing, detailed historical audit logs, and complex inventory reporting across multiple school campuses.
+
+Instead of a single collection, the database now utilizes a relational data model within MongoDB, consisting of two linked collections: equipment and bookings. You must design the backend socket server to process multi-stage aggregation pipelines and support flexible, multi-parameter search requests from the client.
+
+Database Schema Specification
+The database name is ccadb_pro.
+
+1. equipment Collection Schema:
+
+JSON
+{
+  "item_id": "AV001",
+  "name": "Wireless Microphone System",
+  "category": "Audio-Visual",
+  "campus": "North",
+  "total_stock": 10,
+  "specs": {
+    "frequency": "UHF",
+    "battery_life_hours": 8
+  }
+}
+2. bookings Collection Schema:
+
+JSON
+{
+  "booking_id": "BK-2026-0001",
+  "item_id": "AV001",
+  "borrower_cca": "Symphonic Band",
+  "qty_borrowed": 3,
+  "status": "ACTIVE",
+  "return_date": "2026-07-25"
+}
+(Note: An item can have multiple active or completed bookings. "status" can be "ACTIVE" or "RETURNED").
+
+Task 2.1: Advanced Database Seeding (5 marks)
+Write a Python script named seed_advanced.py using pymongo and json.
+
+Connect to mongodb://localhost:27017/ and initialize database ccadb_pro.
+
+Drop both equipment and bookings collections if they exist.
+
+Read two required files from the local directory: equipment_adv.json and bookings_adv.json.
+
+Insert the records into their respective collections.
+
+Create a unique index on the item_id field in the equipment collection, and a non-unique index on the item_id field in the bookings collection to optimize relational lookup queries.
+
+Print a confirmation of the total records inserted and verify that the indexes were created successfully by printing the index information.
+
+Task 2.2: Server Aggregation & Multi-Parameter Queries (12 marks)
+Create the backend server program named server_adv.py. Configure a TCP socket server listening on 127.0.0.1:12345.
+
+The server must receive pipe-delimited (|) commands and execute the following complex queries using pymongo:
+
+SEARCH|category|campus|min_battery
+
+Behavior: A flexible multi-parameter search. Any parameter can be passed as "ANY", which means that field should not be filtered.
+
+Logic: Construct a dynamic MongoDB filter query. If min_battery is not "ANY", query the nested field "specs.battery_life_hours" for values greater than or equal to the specified integer.
+
+Return: A JSON-formatted string representing a list of matching items (exclude the _id field). If no items match, return "RES_EMPTY".
+
+AUDIT_STOCK|item_id
+
+Behavior: Calculates the current available stock of a specific item by checking how many units are currently out on active loan.
+
+Logic: Use the MongoDB Aggregation Framework (aggregate()):
+
+Match the document in equipment by item_id.
+
+Perform a $lookup (left outer join) with the bookings collection where equipment.item_id equals bookings.item_id.
+
+Filter or $unwind the joined bookings to only consider those where "status" is "ACTIVE".
+
+Calculate available_stock = total_stock - (sum of qty_borrowed from active bookings).
+
+Return: Formatted string: "[AV001] Wireless Microphone System | Total: 10 | On Loan: 3 | Available: 7". If item_id does not exist, return "ERR_NOT_FOUND".
+
+OVERDUE_BY_CCA|target_cca
+
+Behavior: Finds all equipment currently borrowed by a specific CCA where the "return_date" is strictly before today's date (2026-07-17) AND "status" is "ACTIVE".
+
+Logic: Query bookings using $match, then use $lookup to join with equipment to retrieve the item's name and campus.
+
+Return: Formatted string listing the Booking ID, Item Name, Campus, and Return Date. If no overdue items exist for that CCA, return "NO_OVERDUE".
+
+EXIT
+
+Close the client connection cleanly.
+
+Task 2.3: Client Query Engine & JSON Parser (9 marks)
+Create the client program named client_adv.py that connects to server_adv.py.
+
+Implement an interactive menu:
+
+Plaintext
+=== EquipHub Pro: Enterprise Analytics Menu ===
+1. Dynamic Multi-Parameter Equipment Search
+2. Real-Time Stock Audit (Aggregation)
+3. CCA Overdue Equipment Report
+4. Exit
+For Option 1 (Dynamic Search):
+
+Prompt the user for Category, Campus, and Minimum Battery Life. Allow the user to press ENTER (leave blank) for any field.
+
+If left blank, convert the parameter to "ANY". Construct the string SEARCH|param1|param2|param3 and send it to the server.
+
+The server will return a raw JSON string. Use Python's json module to parse the response and display it as a cleanly aligned table in the terminal.
+
+For Option 2 & 3:
+
+Collect the single required parameter (item_id or cca_name), send the formatted command, and print the server's string response.
+
+Implement error handling using try-except blocks to catch socket disconnections or JSON decoding errors if the server returns malformed data.
+
+Task 2.4: Architectural & Edge-Case Analysis (4 marks)
+In a text file named analysis.txt, answer the following questions:
+
+Concurrency Risk: In AUDIT_STOCK, the available stock is calculated dynamically using an aggregation pipeline rather than storing an available_stock integer directly in the equipment table. Explain one technical advantage of this design regarding data anomalies, and one drawback regarding system performance under heavy load.
+
+Index Optimization: Why did we create an index on bookings.item_id in Task 2.1? Explain how the MongoDB database engine utilizes this index during the $lookup stage in Task 2.2 compared to a collection without that index.
+
+Required Starter Data Files
+Save these two files in your working directory before beginning Task 2.1.
+
+equipment_adv.json
+JSON
+[
+  {
+    "item_id": "AV001",
+    "name": "Wireless Microphone System",
+    "category": "Audio-Visual",
+    "campus": "North",
+    "total_stock": 10,
+    "specs": { "frequency": "UHF", "battery_life_hours": 8 }
+  },
+  {
+    "item_id": "AV002",
+    "name": "Sony 4K Laser Projector",
+    "category": "Audio-Visual",
+    "campus": "South",
+    "total_stock": 3,
+    "specs": { "frequency": "N/A", "battery_life_hours": 0 }
+  },
+  {
+    "item_id": "IT001",
+    "name": "MacBook Pro M3 Max",
+    "category": "IT",
+    "campus": "North",
+    "total_stock": 5,
+    "specs": { "frequency": "Wi-Fi 6E", "battery_life_hours": 18 }
+  },
+  {
+    "item_id": "SP001",
+    "name": "Tournament Volleyball Set",
+    "category": "Sports",
+    "campus": "East",
+    "total_stock": 20,
+    "specs": { "frequency": "N/A", "battery_life_hours": 0 }
+  }
+]
+bookings_adv.json
+JSON
+[
+  {
+    "booking_id": "BK-2026-0001",
+    "item_id": "AV001",
+    "borrower_cca": "Symphonic Band",
+    "qty_borrowed": 3,
+    "status": "ACTIVE",
+    "return_date": "2026-07-25"
+  },
+  {
+    "booking_id": "BK-2026-0002",
+    "item_id": "AV001",
+    "borrower_cca": "Drama Club",
+    "qty_borrowed": 2,
+    "status": "ACTIVE",
+    "return_date": "2026-07-10"
+  },
+  {
+    "booking_id": "BK-2026-0003",
+    "item_id": "IT001",
+    "borrower_cca": "Robotics Club",
+    "qty_borrowed": 4,
+    "status": "ACTIVE",
+    "return_date": "2026-07-15"
+  },
+  {
+    "booking_id": "BK-2026-0004",
+    "item_id": "AV002",
+    "borrower_cca": "Student Council",
+    "qty_borrowed": 1,
+    "status": "RETURNED",
+    "return_date": "2026-07-01"
+  }

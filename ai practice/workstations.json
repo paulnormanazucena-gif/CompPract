@@ -1,0 +1,5 @@
+[
+  {"ws_id": "LAB1-01", "room": "Turing Lab", "ram_gb": 16, "status": "active", "temp_c": 45},
+  {"ws_id": "LAB1-02", "room": "Turing Lab", "ram_gb": 32, "status": "maintenance", "temp_c": 52},
+  {"ws_id": "LAB2-01", "room": "Lovelace Lab", "ram_gb": 16, "status": "active", "temp_c": 41}
+]

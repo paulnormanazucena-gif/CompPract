@@ -1,0 +1,5 @@
+S101,Alice Tan,26S01
+S102,Bob Lee,26S01
+S103,Charlie Lim,26S02
+S104,Diana Raj,26S02
+S105,Evan Wong,26S03

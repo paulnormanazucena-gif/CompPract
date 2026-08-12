@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+<header><h1>Your Results</h1></header>
+<body>
+	<table border = 1>
+	
+		
+		{% for array in results %}
+		<tr>
+			<th>{{ array[0] }}</th>
+			<th>{{ array[1] }}</th>
+			<th>{{ array[2] }}</th>
+			<th>{{ array[3] }}</th>
+		</tr>
+		
+		{% endfor %}
+		<tr></tr>
+	</table>
+	
+</body>
+
+</html>
+	

@@ -1,0 +1,121 @@
+3. The Clean Test Paper
+H2 Computing (9569/02) Preliminary Examination: Practical Task
+
+Task Title: Campus Equipment Loan System (EquipHub)
+
+Total Marks: 25 marks | Suggested Time: 50 minutes
+
+Background Context
+Your school’s Co-Curricular Activity (CCA) department wants to digitalize the tracking and management of shared audio-visual and sports equipment. You are tasked to develop EquipHub, a client-server networking application using Python sockets and a MongoDB NoSQL database.
+
+Database Schema Specification
+The database name is ccadb and the collection name is equipment. Each document in the equipment collection must follow the structure provided in equipment.json.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task 1.1: Database Initialisation from JSON (4 marks)
+Write a Python script named init_db.py using the pymongo and json libraries to initialize the database from your starter file.
+
+Connect to the local MongoDB instance at mongodb://localhost:27017/.
+
+Select the database ccadb and the collection equipment.
+
+Drop the equipment collection if it already exists to ensure a clean setup.
+
+Read and parse the equipment.json file located in the same directory.
+
+Insert all parsed JSON objects into the equipment collection.
+
+Retrieve and display all documents from the collection in the terminal to verify successful insertion.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task 1.2: Server Socket & NoSQL CRUD Handlers (10 marks)
+Create the backend server program named server.py.
+
+Socket Setup: Configure a TCP server socket bound to 127.0.0.1 (localhost) on port 12345. The server should listen for incoming client connections and handle requests inside a continuous loop.
+
+Communication Protocol: The server must receive string messages from the client formatted using a vertical bar (|) delimiter: COMMAND|PARAM1|PARAM2|...
+
+Database Operations: Implement logic to parse the incoming command string and execute the corresponding pymongo operation on the equipment collection:
+
+READ: Retrieve all documents where "status" is not equal to "Archived". Return a formatted string listing all items.
+
+CREATE|item_id|name|category|quantity: Check if item_id already exists in the database. If not, insert a new document with the provided fields and set "status" to "Available". Return "SUCCESS: Item created." or "ERROR: Item ID already exists."
+
+UPDATE|item_id|new_quantity|new_status: Update the "quantity" (converted to an integer) and "status" of the document matching item_id. Return "SUCCESS: Item updated." or "ERROR: Item ID not found."
+
+DELETE|item_id: Delete the document matching item_id. Return "SUCCESS: Item deleted." or "ERROR: Item ID not found."
+
+Send the resulting string response back to the connected client socket.
+
+Handle an "EXIT" command to cleanly close the connection with the client without shutting down the server loop.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Task 1.3: Client Menu & Communication (8 marks)
+Create the client program named client.py.
+
+Establish a TCP socket connection to 127.0.0.1 on port 12345.
+
+Implement an interactive while loop that displays the following menu:
+
+Plaintext
+=== EquipHub CCA Management Menu ===
+1. View All Equipment (READ)
+2. Add New Equipment (CREATE)
+3. Update Equipment Status/Stock (UPDATE)
+4. Delete Equipment (DELETE)
+5. Exit
+Based on the user's choice, prompt for the required input fields, construct the appropriate pipe-delimited (|) protocol string, and send it to the server.
+
+Receive the response from the server and display it clearly to the user.
+
+If the user selects option 5, send an "EXIT" command, close the socket connection gracefully, and terminate the program.
+
+Task 1.4: Testing and Verification (3 marks)
+In a text file named test_case.txt, describe how you would test your client-server application to ensure data integrity across all four CRUD operations. State one specific test case for an edge condition (e.g., attempting to insert a duplicate item_id or updating an item that does not exist) and explain the expected system behavior.

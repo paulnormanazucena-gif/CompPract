@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+<html>
+<header><h1>STUDENT's GRADES</h1></header>
+<body>
+	<table border = 1>
+		<tr> 
+			<th>Student Name</th>
+			<th>Form Class</th>
+			<th>Subject Name</th>
+			<th>Grade</th>
+		</tr>
+		
+		{% for array in results %}
+		<tr>
+			<th>{{ array[0] }}</th>
+			<th>{{ array[1] }}</th>
+			<th>{{ array[2] }}</th>
+			<th>{{ array[3] }}</th>
+		</tr>
+		
+		{% endfor %}
+		<tr></tr>
+	</table>
+	
+	<form action = {{ url_for('search') }} method = "POST" >
+		<table>
+		<tr>
+			<td> : Search for your grade  </td>
+			<td> Name: <input name = 'value'> </td>
+			<td> <input type = 'submit' value = 'Submit'> </td>
+			
+		</tr>
+		</table>
+	</form>
+</html>

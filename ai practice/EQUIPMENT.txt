@@ -1,0 +1,7 @@
+1,1,ThinkPad T14,Lenovo,15
+2,1,MacBook Air,Apple,10
+3,2,iPad Pro,Apple,20
+4,2,Galaxy Tab S8,Samsung,12
+5,3,Raspberry Pi 4,Raspberry,30
+6,3,Arduino Uno,Arduino,50
+7,4,HDMI Cable 2m,Generic,100

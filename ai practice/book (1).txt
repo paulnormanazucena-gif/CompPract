@@ -1,0 +1,9 @@
+ISBN,title,damaged
+1234567890212,Journey To the West,False
+3273738737373,Water Marshell,False
+2728283764874,Hairy Potter,False
+8328228283287,Lot of the Rings,False
+7387333839839,Marry Poppings,False
+2292192821821,Morbid Dick,False
+3839843843983,Shaving Private Ryan,False
+3873327328728,Gamble God,True

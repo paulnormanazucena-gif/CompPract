@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html>
+<header>LIBRARY</header>
+
+<body>
+<table border = '1'>
+<tr>
+<th>Users</th>
+<th>ISBN</th>
+<th>Date Loaned</th>
+</tr>
+
+{% for item in Loans %}
+<tr>
+<td> <p>{{ item[0] }}</p>  </td>
+<td> <p>{{ item[1] }}</p>  </td>
+<td> <p>{{ item[2] }}</p>  </td>
+</tr>
+{% endfor %}
+
+
+
+</table>
+
+
+
+
+
+<form action = " {{ url_for('search') }} " method ="POST" >
+
+<table>
+	<tr>
+		<td> USERNAME </td>
+		<td> <input name = 'username'></td>
+	</tr>
+	
+	<tr>
+		<td> ISBN </td>
+		<td> <input name = 'ISBN'></td>
+	</tr>
+
+	<tr>
+		<td> Date Loaned(YYYY/MM/DD) </td>
+		<td> <input name = 'dateloaned'></td>
+		
+		
+	
+	</tr>
+	
+	<td> <input type = "submit" value = "LOAN"</td>
+
+
+</table>
+
+
+
+
+
+</form>
+</body>
+
+
+</html>

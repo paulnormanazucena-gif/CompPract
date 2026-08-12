@@ -1,0 +1,118 @@
+Tech Innovator Junior College
+2026 H2 Computing (Syllabus 9569)
+Test 3 Revision
+
+1 The TIJC IT Department operates an equipment room and wishes to implement a web-based IT equipment loan system to better manage inventory and track student loans.
+
+Students can use the system to browse available equipment categories, request items for their projects, and track their loan history.
+
+The web-based equipment loan system must be able to:
+
+Store student details.
+
+Store information related to equipment categories and specific devices.
+
+Keep track of the equipment borrowed by students.
+
+There are a total of four tables, and the table descriptions are as follows:
+
+student (studentID, name, phoneNo)
+
+category (categoryID, categoryName)
+
+equipment (equipID, categoryID*, equipName, brand, availableQty)
+
+loanRecord (studentID*, equipID*, loanDate, returnDate, quantity)
+
+The primary key is indicated by underlining one or more attributes.
+The attribute indicated with * denoted a foreign key.
+
+It is given that:
+
+Students are allowed to borrow different equipment in a single transaction. For example, when a student borrows three different devices on the same day, three separate records with the same value for studentID and loanDate will be inserted into the table loanRecord.
+
+The primary keys categoryID and equipID of the tables category and equipment are auto-incremented integers.
+
+loanDate and returnDate in table loanRecord are represented in the format of YYYY-MM-DD.
+
+
+IT LOAN  DB
+
+Task 1.1
+Create a SQL file called TASK1_1_<your_name>_<centre_number>_<index_number>.sql to show the SQL code to create database it_loan.db with the four tables given. Define the primary and foreign keys for each table.
+[4]
+
+Task 1.2
+The files STUDENT.txt, CATEGORY.txt, EQUIPMENT.txt and LOANRECORD.txt contain information about the students, categories, equipment, and loan history respectively for insertion into the it_loan database.
+
+Each row in the four files is a comma-separated list of information.
+
+For STUDENT.txt, information about each student is given in the following order:
+NRIC, Name, PhoneNo
+
+Due to data privacy policies regarding the NRIC, it is decided that a unique identifier for each student (studentID) is to be obtained by combining the first four characters of a student's name (with white spaces removed) and the last four digits of their PhoneNo. All letters in studentID will be converted to uppercase.
+
+For example, a student with PhoneNo = "98765432" and name "Lim Ah Huat" will be given a student ID of "LIMA5432".
+
+For CATEGORY.txt, information is given in the following order:
+categoryID, categoryName
+
+For EQUIPMENT.txt, information is given in the following order:
+equipID, categoryID, equipName, brand, availableQty
+
+For LOANRECORD.txt, information is given in the following order:
+NRIC, equipID, loanDate, returnDate, quantity
+(Note: You will need to process the NRIC and match it to the newly generated studentID during insertion).
+
+Write a Python program to insert all information from the four files into the four separate tables of the database it_loan.db based on the descriptions given above.
+
+Save your program code as:
+Task1_2_<your name>_<centre number>_<index number>.py
+[10]
+
+Task 1.3
+Write SQL code to show the equipName and brand of all equipment that belongs to a specified category name. Run this query with the category name "Laptops".
+
+Save this code as:
+Task1_3_<your name>_<centre number>_<index number>.sql
+[3]
+
+Task 1.4
+The IT Department would like to know the total quantity of items borrowed by a specific student on a particular date. Write a Python program and the necessary files to create a web application.
+
+The web application accepts two inputs, Student ID and Loan Date, from a web form in separate textboxes. The form design should include a "Calculate Total Loans" heading, the two input fields, and a "Submit" button.
+
+Save your program code as:
+Task1_4_<your name>_<centre number>_<index number>.py
+With any additional files/subfolders as needed in a folder named:
+Task1_4_<your name>_<centre number>_<index number>
+[4]
+
+Task 1.5
+Write an SQL query that sums up the total quantity of equipment borrowed by a student specified by studentID on a given loanDate.
+
+The results of the query should be shown on a webpage in a table that displays the following data:
+c
+Student ID
+
+Student Name
+
+Loan Date
+
+Total Items Borrowed
+
+The program should return an HTML document that enables the web browser to display a table with the required data. The resulting web page is accessible by clicking on the "Submit" button on the web form in Task 1.4.
+
+Save your program code as:
+Task1_5_<your name>_<centre number>_<index number>.py
+[4]
+
+Task 1.6
+Run your web application by entering the following input into the web form through its "Submit" button:
+
+Student ID = "ALIC4567"
+
+Date = "2026-03-15"
+
+Save the output HTML page of the program as:
+Task1_6_<your name>_<centre number>_<index number>.html
